@@ -11,5 +11,4 @@ public class ChildCommonApplication {
     public static void main(String[] args) {
         SpringApplication.run(ChildCommonApplication.class, args);
     }
-
 }

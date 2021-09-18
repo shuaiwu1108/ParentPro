@@ -13,6 +13,7 @@ public class MusicServiceFallBack implements ProviderService {
         return "musicPlay error!";
     }
 
+    @Override
     public String videoPlay(String videoPath) {
         log.error("videoPlay 调用失败！ 服务降级！");
         return "videoPlay error!";

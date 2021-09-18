@@ -13,10 +13,9 @@ public class PlayerController {
     @Resource
     private ProviderService providerService;
 
-
     @RequestMapping("/consumer/musicplay")
-    public String play(@RequestParam String musicPath){
-        log.info("musicPath 调用！");
+    public String musicplay(@RequestParam String musicPath){
+        log.info("musicplay 调用！");
         return providerService.musicPlay(musicPath);
     }
 
