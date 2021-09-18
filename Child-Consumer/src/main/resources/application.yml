@@ -1,0 +1,18 @@
+server:
+  port: 9012
+spring:
+  application:
+    name: child-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.50.16:8848
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: 192.168.50.16:9090
+  main:
+    allow-bean-definition-overriding: true
+feign:
+  sentinel:
+    enabled: true

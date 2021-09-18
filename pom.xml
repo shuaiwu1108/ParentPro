@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.3.2.RELEASE</version>
+  </parent>
+
+  <groupId>com.wslio</groupId>
+  <artifactId>ParentPro</artifactId>
+  <version>1.0</version>
+
+  <!-- 父级项目中，此处配置为pom -->
+  <packaging>pom</packaging>
+
+  <properties>
+    <java.version>1.8</java.version>
+    <spring-boot-version>2.3.2.RELEASE</spring-boot-version>
+    <spring-cloud-version>2.2.6.RELEASE</spring-cloud-version>
+    <spring-cloud-dependencies>2.2.6.RELEASE</spring-cloud-dependencies>
+    <spring-cloud-nacos-version>2.2.6.RELEASE</spring-cloud-nacos-version>
+    <spring-cloud-openfeign-version>2.2.6.RELEASE</spring-cloud-openfeign-version>
+    <spring-cloud-gateway-version>2.2.6.RELEASE</spring-cloud-gateway-version>
+    <ali-csp-version>1.8.1</ali-csp-version>
+  </properties>
+
+  <!-- 这里放子模块 -->
+  <modules>
+    <module>Child-Common</module>
+    <module>Child-Provider</module>
+    <module>Child-Consumer</module>
+    <module>Child-Gateway</module>
+  </modules>
+
+  <!-- 放共有的依赖 -->
+  <dependencies>
+    <!-- 所有的子工程都会用nacos来注册服务 -->
+    <dependency>
+      <groupId>com.alibaba.cloud</groupId>
+      <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.20</version>
+      <scope>provided</scope>
+    </dependency>
+
+  </dependencies>
+
+  <!-- 统一依赖版本管理 -->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+        <version>${spring-cloud-dependencies}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        <version>${spring-cloud-nacos-version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-openfeign</artifactId>
+        <version>${spring-cloud-openfeign-version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-gateway</artifactId>
+        <version>${spring-cloud-gateway-version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.alibaba.csp</groupId>
+        <artifactId>sentinel-core</artifactId>
+        <version>${ali-csp-version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.alibaba.csp</groupId>
+        <artifactId>sentinel-transport-simple-http</artifactId>
+        <version>${ali-csp-version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
